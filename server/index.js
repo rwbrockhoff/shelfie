@@ -13,7 +13,8 @@ massive( process.env.CONNECTION_STRING ).then( dbInstance => {
     console.log(error)
 })
 
-app.post('/api/product', controller.create);
+app.get('/api/inventory', controller.read);
 
 const port = 4000;
 app.listen(port, () => {console.log(`Listening on port: ${port}`)})
+
