@@ -4,19 +4,26 @@ import axios from 'axios';
 
 
 export default class Form extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
         this.state = {
             name: '', 
             price: null,
             imgurl: defaultimg,
-            clearForm: ''
+            newImg: ''
         }
+       
     }
 
-    postNewProduct(){
-        axios.post('/api/product', )
+    postNewProduct = (props) => {
+        let image = this.state.newImg
+        let name = this.state.name
+        let price = this.state.price
+        axios.post('/api/product', {img_url: image, productname: name, price: price}).then( (res) => {
+            this.props.updateInventory(res.data)
+            
+        })
     }
     
     render(){
@@ -24,14 +31,14 @@ export default class Form extends Component {
             <div className="formBox">
                  <img src={this.state.imgurl} alt="nothing"/>
                  <p>Image URL:</p>
-                 <input value={this.state.clearForm} onChange={ (event) => this.setState({clearForm: event.target.value})}/>
+                 <input value={this.state.newImg} onChange={ (event) => this.setState({newImg: event.target.value})}/>
                  <p>Product Name:</p>
                  <input value={this.state.name} onChange={ (event) => this.setState({name: event.target.value})}/>
                  <p>Price:</p>
                  <input value={this.state.price} onChange={ (event) => this.setState({price: event.target.value})}/>
 
                  <button onClick={() => this.setState({clearForm: '', name: '', price: ''})}> Clear </button>
-                 <button> Add to Inventory </button>
+                 <button onClick={this.postNewProduct}> Add to Inventory </button>
             </div>
         )
     }

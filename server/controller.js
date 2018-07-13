@@ -1,11 +1,11 @@
 module.exports = {
     create: (req, res, next) => {
         const dbInstance = req.app.get('db');
-        const {imgurl, name, price} = req.body;
-
-        dbInstance.create_product(imgurl, name, price)
-        .then( () => {
-            res.sendStatus(200)
+        const {img_url, productname, price} = req.body; console.log('values passed:', req.body)
+        dbInstance.create_product(img_url, productname, price)
+        .then( (product) => {
+            
+            res.status(200).send(product)
         })
         .catch( (error) => {
             res.sendStatus(500)
@@ -17,7 +17,7 @@ module.exports = {
         
         dbInstance.get_inventory()
         .then( (products) => {
-            console.log(products)
+          
             res.status(200).send(products)
         })
         .catch( (error) => {

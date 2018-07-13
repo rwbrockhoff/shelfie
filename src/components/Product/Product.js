@@ -6,6 +6,7 @@ export default function Product(props){
             <h1> {props.name} </h1>
             <p> {props.price} </p>
             <img src={props.imgurl} alt={props.name}/>
+            <button>Delete</button>
         </div>
     )
 }

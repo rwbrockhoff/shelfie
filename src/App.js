@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       inventory: []
     }
+    this.updateInventory = this.updateInventory.bind(this);
   }
 
   componentDidMount(){
@@ -23,11 +24,17 @@ class App extends Component {
     })
   }
 
+  updateInventory(value){
+    this.setState({
+      inventory: value
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Dashboard inventory={this.state.inventory}/>
-       <Form />
+       <Form updateInventory={this.updateInventory}/>
         <Header />
       </div>
     );
