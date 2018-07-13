@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
         let arr = this.props.inventory.map( (e) => {
            return (
                <div>
-               <Product imgurl={e.imgurl} name={e.name} price={e.price}/>
+               <Product imgurl={e.img_url} name={e.productname} price={e.price}/>
                </div>
            )
         })

@@ -14,10 +14,10 @@ module.exports = {
     },
     read: (req, res, next) => {
         const dbInstance = req.app.get('db');
-        const {imgurl, name, price} = req.body;
-
-        dbInstance.get_inventory(imgurl, name, price)
+        
+        dbInstance.get_inventory()
         .then( (products) => {
+            console.log(products)
             res.status(200).send(products)
         })
         .catch( (error) => {
