@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import defaultimg from '../../assets/default.jpg'
+import axios from 'axios';
 
 
 export default class Form extends Component {
@@ -13,6 +14,10 @@ export default class Form extends Component {
             clearForm: ''
         }
     }
+
+    postNewProduct(){
+        axios.post('/api/product', )
+    }
     
     render(){
         return (
@@ -25,7 +30,7 @@ export default class Form extends Component {
                  <p>Price:</p>
                  <input value={this.state.price} onChange={ (event) => this.setState({price: event.target.value})}/>
 
-                 <button onClick={() => this.setState({clearForm: '', name: '', price: null})}> Clear </button>
+                 <button onClick={() => this.setState({clearForm: '', name: '', price: ''})}> Clear </button>
                  <button> Add to Inventory </button>
             </div>
         )
