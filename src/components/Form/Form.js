@@ -15,7 +15,13 @@ export default class Form extends Component {
         }
        
     }
-
+    clearForm(){
+        this.setState({
+            clearForm: '', 
+            name: '', 
+            price: ''
+        })
+    }
     postNewProduct = (props) => {
         let image = this.state.newImg
         let name = this.state.name
